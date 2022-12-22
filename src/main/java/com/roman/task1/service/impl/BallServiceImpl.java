@@ -4,8 +4,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.roman.task1.service.BallService;
-import com.roman.task1.things.Ball;
-import com.roman.task1.things.Basket;
+import com.roman.task1.entity.Ball;
+import com.roman.task1.entity.Basket;
 
 import java.util.List;
 
@@ -14,8 +14,7 @@ public class BallServiceImpl implements BallService {
     static Logger logger = LogManager.getLogger();
 
     String color = "multicolor";
-    @Override
-    public int findSameBallQuantity(Basket basket, String color ) {
+    public int sumSameBallQuantity(Basket basket, String color ) {
         List<Ball> list = basket.getBalls();
         int sumEqualBalls = 0;
         for (int i = 0; i < list.size(); i++) {

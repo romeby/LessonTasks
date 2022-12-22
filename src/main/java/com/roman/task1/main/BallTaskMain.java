@@ -2,8 +2,8 @@ package com.roman.task1.main;
 
 import com.roman.task1.service.BallService;
 import com.roman.task1.service.impl.BallServiceImpl;
-import com.roman.task1.things.Ball;
-import com.roman.task1.things.Basket;
+import com.roman.task1.entity.Ball;
+import com.roman.task1.entity.Basket;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class BallTaskMain {
         Basket basket = new Basket(list);
         BallService ballService = new BallServiceImpl();
         double sumWeight = ballService.sumTotalWeight(basket);
-        int ballCount = ballService.findSameBallQuantity(basket, color);
+        int ballCount = ballService.sumSameBallQuantity(basket, color);
 
         System.out.println(sumWeight);
         System.out.println(ballCount);
