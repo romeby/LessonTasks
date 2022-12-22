@@ -1,4 +1,4 @@
-package things;
+package com.roman.task1.things;
 
 import java.util.ArrayList;
 import java.util.List;
