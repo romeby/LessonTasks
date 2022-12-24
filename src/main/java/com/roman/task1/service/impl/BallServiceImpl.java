@@ -13,7 +13,6 @@ public class BallServiceImpl implements BallService {
 
     static Logger logger = LogManager.getLogger();
 
-    String color = "multicolor";
     public int sumSameBallQuantity(Basket basket, String color ) {
         List<Ball> list = basket.getBalls();
         int sumEqualBalls = 0;
