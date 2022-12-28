@@ -1,20 +1,26 @@
 package com.roman.task2.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class Order {
 
+    static final int MIN_STAFF_OR_STUFF_NEED = 0;
     private int orderNumber;
-    private String clientName; // подтянуть номер клиента?
-    private Film film;
-    private int amountOfEpisodes;
+    public Client client = new Client();
+    public Film film = new Film();
+    List<FilmStudio> filmStudioList = new ArrayList<>();
 
 
-    public Order(int orderNumber, String clientName, Film film, int amountOfEpisodes) {
-        this.orderNumber = orderNumber;
-        this.clientName = clientName;
-        this.film = film;
-        this.amountOfEpisodes = amountOfEpisodes;
+    public Order() {
+    }
+
+    public Order(int orderNumber, String clientName, String filmName, int amountOfEpisodes) {
+        setOrderNumber(orderNumber);
+        client.setClientName(clientName);
+        film.setFilmName(filmName, client.getClientName());
+        film.setAmountOfEpisodes(amountOfEpisodes);
     }
 
     public int getOrderNumber() {
@@ -25,36 +31,13 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public Film getFilm() {
-        return film;
-    }
-
-    public void setFilm(Film film) {
-        this.film = film;
-    }
-
-    public int getAmountOfEpisodes() {
-        return amountOfEpisodes;
-    }
-
-    public void setAmountOfEpisodes(int amountOfEpisodes) {
-        this.amountOfEpisodes = amountOfEpisodes;
-    }
 
     @Override
     public String toString() {
         return new StringJoiner("", "[", "]")
                 .add(orderNumber + " : ")
-                .add(clientName + " : ")
-                .add(film.getFilmName() + " : ")
+                .add(client.getClientName() + " : ")
+                .add(film.getFilmName() + "  : ")
                 .add(film.getAmountOfEpisodes() + "")
                 .toString();
     }

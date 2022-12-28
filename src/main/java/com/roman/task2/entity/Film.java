@@ -1,28 +1,32 @@
 package com.roman.task2.entity;
 
+import java.lang.ref.Cleaner;
 import java.util.List;
 
 public class Film {
     static final int MIN_SIZE_NAME = 3;
     static final int MAX_SIZE_NAME = 20;
-//    static final int MIN_STAFF_OR_STUFF_NEED = 0;
 
     private List<FilmStudio> filmStudioList;
     private String filmName;
     private int amountOfEpisodes = 1;
-    private LeaseAndTaxes leaseAndTaxes;
+    private int amountOfRent;
+    public Client client;
+    public Order order;
+
+    public Film() {
+    }
 
     public Film(String filmName, int amountOfEpisodes){
-        setFilmName(filmName);
+        setFilmName(filmName, client.getClientName());
         setAmountOfEpisodes(amountOfEpisodes);
     }
 
-    public Film(String filmName, int amountOfEpisodes,List<FilmStudio> filmStudioList){
-        setFilmName(filmName);
+    public Film(String filmName, int amountOfEpisodes,List<FilmStudio> filmStudioList, int amountOfRent){
+        setFilmName(filmName, client.getClientName());
         setAmountOfEpisodes(amountOfEpisodes);
         this.filmStudioList = filmStudioList;
-      //  this.leaseAndTaxes = leaseAndTaxes;
-
+        this.amountOfRent = amountOfRent;
     }
 
     public List<FilmStudio> getFilmStudioList() {
@@ -37,11 +41,11 @@ public class Film {
         return filmName;
     }
 
-    public void setFilmName(String filmName) {
+    public void setFilmName(String filmName, String clientName) {
         if (MIN_SIZE_NAME <= filmName.length() && MAX_SIZE_NAME >= filmName.length()) {
             this.filmName = filmName;
         } else {
-            this.filmName = "Producer " ;
+            this.filmName = "Producer " + clientName;
         }
     }
 
@@ -53,24 +57,16 @@ public class Film {
         this.amountOfEpisodes = amountOfEpisodes;
     }
 
-    public LeaseAndTaxes getLeaseAndTaxes() {
-        return leaseAndTaxes;
-    }
-
-    public void setLeaseAndTaxes(LeaseAndTaxes leaseAndTaxes) {
-        this.leaseAndTaxes = leaseAndTaxes;
-    }
-
-//    public void addStaffOrStuff(FilmStudio staffOrStuff, int amountOfStaffOrStuff){
-//        for (int i = 0; i < filmStudioList.size(); i++) {
-//            if (filmStudioList.get(i).getAmountOfRent() > MIN_STAFF_OR_STUFF_NEED){
-//                System.out.println("No Stuff or Staff needed");
-//            }
-//            if (){
-//                System.out.println("You need a " + filmStudioList.get(i).name());
-//            }
-//          }
-//    }
+/*    public void addStaffOrStuff(FilmStudio staffOrStuff, int amountOfStaffOrStuff){
+/        for (int i = 0; i < filmStudioList.size(); i++) {
+/            if (filmStudioList.get(i).getAmountOfRent() > MIN_STAFF_OR_STUFF_NEED){
+/                System.out.println("No Stuff or Staff needed");
+/            }
+/            if (){
+/                System.out.println("You need a " + filmStudioList.get(i).name());
+/            }
+/          }
+    } */
 
 
 }
