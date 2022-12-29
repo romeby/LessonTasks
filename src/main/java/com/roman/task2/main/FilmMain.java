@@ -12,9 +12,12 @@ import org.apache.logging.log4j.Logger;
 public class FilmMain {
     static Logger logger = LogManager.getLogger();
     public static void main(String[] args) {
-        Order order = new Order(11111, "Spilberg" , "Pulp fiction", 1);
-        System.out.println(order.toString());
+        Order order = new Order(2, "Spilberg" , "Pulp fiction", 1);
+        Order order1 = new Order(100000, "Spilberg" , "Pu", 2);
+        System.out.println(order);
+        System.out.println(order1);
         logger.log(Level.INFO, "Actual order  :" + order);
+
 
     }
 }
