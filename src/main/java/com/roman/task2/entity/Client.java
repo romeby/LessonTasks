@@ -7,6 +7,10 @@ public class Client {
     public Client() {
     }
 
+    public Client(String clientName) {
+        this.clientName = clientName;
+    }
+
     public Client(int clientNumber, String clientName) {
         this.clientNumber = clientNumber;
         setClientName(clientName);

@@ -1,16 +1,31 @@
 package com.roman.task2.entity;
 
+import com.roman.task2.util.OrderIdGeneretor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
 public class Order {
 
+    private String outputMessage = "Actual order  :{0}";
     private int orderNumber = OrderIdGeneretor.generateNextOrderId();
-    public Client client = new Client();
-    public Film film = new Film();
+    private Client client = new Client();
+    private Film film = new Film();
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
     List<FilmStudio> filmStudioList = new ArrayList<>();
 
+    public String getOutputMessage() {
+        return outputMessage;
+    }
 
     public Order() {
     }
@@ -32,10 +47,6 @@ public class Order {
         return orderNumber;
     }
 
-
-    //public void setOrderNumber(int orderNumber) {
-   //     this.orderNumber = orderNumber;
- //   }
 
     @Override
     public String toString() {

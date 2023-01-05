@@ -12,23 +12,9 @@ public class Film {
     private String filmName;
     private int amountOfEpisodes = 1;
     private int amountOfRent;
-    public Client client;
-    public Order order;
-
 
     public Film() {
-    }
-
-    public Film(String filmName, int amountOfEpisodes) {
-        setFilmName(filmName, client.getClientName());
-        setAmountOfEpisodes(amountOfEpisodes);
-    }
-
-    public Film(String filmName, int amountOfEpisodes, List<FilmStudio> filmStudioList, int amountOfRent) {
-        setFilmName(filmName, client.getClientName());
-        setAmountOfEpisodes(amountOfEpisodes);
-        this.filmStudioList = filmStudioList;
-        this.amountOfRent = amountOfRent;
+        super();
     }
 
     public List<FilmStudio> getFilmStudioList() {
