@@ -1,28 +1,32 @@
 package com.roman.task2.entity;
 
-import java.lang.ref.Cleaner;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Film {
     static final int MIN_SIZE_NAME = 3;
     static final int MAX_SIZE_NAME = 20;
+    static Logger logger = LogManager.getLogger();
 
-    private List<FilmStudio> filmStudioList = new ArrayList<>();
+    private List<FilmStudioStuffAndStaff> filmStudioList = new ArrayList<>();
     private String filmName;
-    private int amountOfEpisodes = 1;
-    private int amountOfRent;
+    private int amountOfEpisodes;
+    private int leaseAndTaxes = 800;
 
     public Film() {
         super();
     }
 
-    public List<FilmStudio> getFilmStudioList() {
+    public List<FilmStudioStuffAndStaff> getFilmStudioList() {
         return filmStudioList;
     }
 
-    public void setFilmStudioList(List<FilmStudio> filmStudioList) {
-        this.filmStudioList = filmStudioList;
+    public void setFilmStudioList(List<FilmStudioStuffAndStaff> filmStudioStuffAndStaff) {
+        this.filmStudioList = filmStudioStuffAndStaff;
     }
 
     public String getFilmName() {
@@ -49,5 +53,24 @@ public class Film {
         }
     }
 
+    public int getLeaseAndTaxes() {
+        return leaseAndTaxes;
+    }
+
+    public void addStuffOrStaff(FilmStudioStuffAndStaff newStuffOrStaff){
+        if (!filmStudioList.contains(newStuffOrStaff)){
+            filmStudioList.add(newStuffOrStaff);
+        } else {
+            logger.log(Level.ERROR, "That stuff/staff is actually exist");
+        }
+    }
+
+    public int calculateFilmPrice(){
+        int episodePrice = 0;
+        for (int i = 0; i < filmStudioList.size(); i++) {
+            episodePrice += filmStudioList.get(i).getPriceForRent();
+        }
+        return episodePrice * getAmountOfEpisodes() + leaseAndTaxes;
+    }
 
 }

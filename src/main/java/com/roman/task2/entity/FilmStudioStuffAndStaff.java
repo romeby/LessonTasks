@@ -1,6 +1,6 @@
 package com.roman.task2.entity;
 
-public enum FilmStudio {
+public enum FilmStudioStuffAndStaff {
     STAGE_DIRECTOR(12000),
     SCENARIO(950),
     MUSICIAN(1300),
@@ -11,7 +11,7 @@ public enum FilmStudio {
 
     private int priceForRent;
 
-    FilmStudio(int priceForRent) {
+    FilmStudioStuffAndStaff(int priceForRent) {
         this.priceForRent = priceForRent;
     }
 

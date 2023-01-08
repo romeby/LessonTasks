@@ -21,8 +21,6 @@ public class Order {
         return film;
     }
 
-    List<FilmStudio> filmStudioList = new ArrayList<>();
-
     public String getOutputMessage() {
         return outputMessage;
     }
@@ -36,7 +34,7 @@ public class Order {
         film.setAmountOfEpisodes(amountOfEpisodes);
     }
 
-    public Order(String clientName, String filmName, int amountOfEpisodes, List<FilmStudio> workerList) {
+    public Order(String clientName, String filmName, int amountOfEpisodes, List<FilmStudioStuffAndStaff> workerList) {
         client.setClientName(clientName);
         film.setFilmName(filmName, client.getClientName());
         film.setAmountOfEpisodes(amountOfEpisodes);
