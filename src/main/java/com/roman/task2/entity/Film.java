@@ -6,19 +6,22 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Film {
+    static Logger logger = LogManager.getLogger();
     static final int MIN_SIZE_NAME = 3;
     static final int MAX_SIZE_NAME = 20;
-    static Logger logger = LogManager.getLogger();
-
+    static final int LEASE_AND_TAX = 800;
+    static final String DEFAULT_FILM_NAME = "Producer ";
     private List<FilmStudioStuffAndStaff> filmStudioList = new ArrayList<>();
     private String filmName;
     private int amountOfEpisodes;
-    private int leaseAndTaxes = 800;
 
-    public Film() {
-        super();
+
+    public Film(String filmName, int amountOfEpisodes, Client client) {
+        setFilmName(filmName, client);
+        setAmountOfEpisodes(amountOfEpisodes);
     }
 
     public List<FilmStudioStuffAndStaff> getFilmStudioList() {
@@ -33,11 +36,11 @@ public class Film {
         return filmName;
     }
 
-    public void setFilmName(String filmName, String clientName) {
+    public void setFilmName(String filmName, Client client) {
         if (MIN_SIZE_NAME <= filmName.length() && MAX_SIZE_NAME >= filmName.length()) {
             this.filmName = filmName;
         } else {
-            this.filmName = "Producer " + clientName;
+            this.filmName = DEFAULT_FILM_NAME + client.getClientName();
         }
     }
 
@@ -46,31 +49,29 @@ public class Film {
     }
 
     public void setAmountOfEpisodes(int amountOfEpisodes) {
-        if (amountOfEpisodes > 0) {
+        if (amountOfEpisodes > 0 ){
             this.amountOfEpisodes = amountOfEpisodes;
-        } else {
-            this.amountOfEpisodes = 1;
+        }
+        else {
+            logger.log(Level.ERROR, "Incorrect number of episodes!");
+            setAmountOfEpisodes(1);
         }
     }
 
-    public int getLeaseAndTaxes() {
-        return leaseAndTaxes;
-    }
-
-    public void addStuffOrStaff(FilmStudioStuffAndStaff newStuffOrStaff){
-        if (!filmStudioList.contains(newStuffOrStaff)){
+    public void addStuffOrStaff(FilmStudioStuffAndStaff newStuffOrStaff) {
+        if (!filmStudioList.contains(newStuffOrStaff)) {
             filmStudioList.add(newStuffOrStaff);
         } else {
-            logger.log(Level.ERROR, "That stuff/staff is actually exist");
+            logger.log(Level.ERROR, String.format("%s %s", "That stuff/staff is already exist: ", newStuffOrStaff));
         }
     }
 
-    public int calculateFilmPrice(){
-        int episodePrice = 0;
-        for (int i = 0; i < filmStudioList.size(); i++) {
-            episodePrice += filmStudioList.get(i).getPriceForRent();
-        }
-        return episodePrice * getAmountOfEpisodes() + leaseAndTaxes;
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Film.class.getSimpleName() + "[", "]")
+                .add("Stuff and Stuff" + filmStudioList)
+                .add("Film name='" + filmName + "'")
+                .add("Amount of Episodes=" + amountOfEpisodes)
+                .toString();
     }
-
 }

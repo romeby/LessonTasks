@@ -27,7 +27,7 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
         LocalTime localTime = LocalTime.now();
         String numberOfOrder = String.format("%05d", order.getOrderNumber());
         DecimalFormat dF = new DecimalFormat("###,###");
-        int orderSummary =  order.getFilm().calculateFilmPrice();
+        int orderSummary = order.calculateFilmPrice();
 
         chequeSb.append("\n" + "Date : " + localDate.getDayOfMonth() + "." + localDate.getMonth() + "." +
                         localDate.getYear() +
@@ -37,7 +37,7 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
                                 "\n" + "Producer : " + order.getClient().getClientName() +
                                 "\n" + "Film name : " + order.getFilm().getFilmName() +
                                 "\n" + "--------------------------------");
-        chequeSb.append(String.format("\n" +"%-26s %s %s", "Lease and Tax", order.getFilm().getLeaseAndTaxes(), "€"));
+        chequeSb.append(String.format("\n" +"%-26s %s %s", "Lease and Tax", 800, "€"));
         for (int i = 0; i < order.getFilm().getFilmStudioList().size() ; i++) {
             chequeSb.append(String.format("\n" + "%-23s %s %s", order.getFilm().getFilmStudioList().get(i),
                     dF.format(order.getFilm().getFilmStudioList().get(i).getPriceForRent()), "€"));
@@ -49,6 +49,5 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
         chequeSb.append(String.format("\n" +"%-23s %s %s", "Total", dF.format(orderSummary), "€"));
 
         return chequeSb.toString();
-
     }
 }
