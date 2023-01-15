@@ -45,7 +45,7 @@ public class Order {
         if (film.getAmountOfEpisodes() >= 1){
             for (int i = 0; i < film.getFilmStudioList().size(); i++) {
                 expenses += film.getFilmStudioList().get(i).getPriceForRent();
-                episodePrice = expenses * film.getAmountOfEpisodes() + Film.LEASE_AND_TAX;
+                episodePrice = expenses * film.getAmountOfEpisodes() + getFilm().getLEASE_AND_TAX();
             }
         }
         return (episodePrice);

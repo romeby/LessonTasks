@@ -40,6 +40,7 @@ public class FilmMain {
         logger.log(Level.INFO, MessageFormat.format(order.getOutputMessage(), order));
 
         FilmOrderOutputServiceImpl filmOrderOutputService = new FilmOrderOutputServiceImpl();
+        filmOrderOutputService.printChequeToFile(filmOrderOutputService.outputCheque(order), "cheque.txt");
         logger.log(Level.INFO, filmOrderOutputService.outputOfAttribute(order));
         logger.log(Level.INFO, filmOrderOutputService.outputOfAttribute(order1));
         logger.log(Level.INFO, filmOrderOutputService.outputCheque(order));

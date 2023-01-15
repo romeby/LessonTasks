@@ -2,7 +2,12 @@ package com.roman.task2.service.impl;
 
 import com.roman.task2.entity.Order;
 import com.roman.task2.service.FilmOrderOutputService;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,6 +15,7 @@ import java.time.LocalTime;
 
 public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
 
+    static Logger logger = LogManager.getLogger();
     @Override
     public String outputOfAttribute(Order order) {
         String orderName = String.format("%05d", order.getOrderNumber());
@@ -37,17 +43,29 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
                                 "\n" + "Producer : " + order.getClient().getClientName() +
                                 "\n" + "Film name : " + order.getFilm().getFilmName() +
                                 "\n" + "--------------------------------");
-        chequeSb.append(String.format("\n" +"%-26s %s %s", "Lease and Tax", 800, "€"));
+        chequeSb.append(String.format("\n" +"%-23s %s", "Lease and Tax", dF.format(order.getFilm().getLEASE_AND_TAX()) + "€"));
         for (int i = 0; i < order.getFilm().getFilmStudioList().size() ; i++) {
-            chequeSb.append(String.format("\n" + "%-23s %s %s", order.getFilm().getFilmStudioList().get(i),
-                    dF.format(order.getFilm().getFilmStudioList().get(i).getPriceForRent()), "€"));
+            chequeSb.append(String.format("\n" + "%-23s %s", order.getFilm().getFilmStudioList().get(i),
+                    dF.format(order.getFilm().getFilmStudioList().get(i).getPriceForRent()) + "€"));
         }
         chequeSb.append("\n" + "********************************");
-        chequeSb.append(String.format("\n" +"%-23s %s %s", "Total", dF.format(orderSummary), "€"));
+        chequeSb.append(String.format("\n" +"%-23s %s", "Total", dF.format(orderSummary) + "€"));
         chequeSb.append(String.format("\n" + "%-28s %s", "Number of Episodes", order.getFilm().getAmountOfEpisodes()));
         chequeSb.append("\n" + "********************************");
-        chequeSb.append(String.format("\n" +"%-23s %s %s", "Total", dF.format(orderSummary), "€"));
+        chequeSb.append(String.format("\n" +"%-23s %s", "Total", dF.format(orderSummary) + "€"));
 
         return chequeSb.toString();
+    }
+
+    @Override
+    public void printChequeToFile(String outputCheque, String filename) {
+        try {
+            FileWriter fileWriter = new FileWriter(filename, false);
+            fileWriter.write(outputCheque);
+            fileWriter.flush();
+        } catch (IOException e) {
+            logger.log(Level.ERROR, e.getMessage()); ;
+        }
+
     }
 }

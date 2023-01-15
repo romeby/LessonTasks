@@ -10,10 +10,10 @@ import java.util.StringJoiner;
 
 public class Film {
     static Logger logger = LogManager.getLogger();
-    static final int MIN_SIZE_NAME = 3;
-    static final int MAX_SIZE_NAME = 20;
-    static final int LEASE_AND_TAX = 800;
-    static final String DEFAULT_FILM_NAME = "Producer ";
+    private final int MIN_SIZE_NAME = 3;
+    private final int MAX_SIZE_NAME = 20;
+    private final int LEASE_AND_TAX = 800;
+    private final String DEFAULT_FILM_NAME = "Producer ";
     private List<FilmStudioStuffAndStaff> filmStudioList = new ArrayList<>();
     private String filmName;
     private int amountOfEpisodes;
@@ -22,6 +22,10 @@ public class Film {
     public Film(String filmName, int amountOfEpisodes, Client client) {
         setFilmName(filmName, client);
         setAmountOfEpisodes(amountOfEpisodes);
+    }
+
+    public int getLEASE_AND_TAX() {
+        return LEASE_AND_TAX;
     }
 
     public List<FilmStudioStuffAndStaff> getFilmStudioList() {
