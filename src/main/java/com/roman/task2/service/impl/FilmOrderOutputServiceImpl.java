@@ -66,5 +66,6 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
         } catch (IOException e) {
             logger.log(Level.ERROR, e.getMessage()); ;
         }
+
     }
 }
