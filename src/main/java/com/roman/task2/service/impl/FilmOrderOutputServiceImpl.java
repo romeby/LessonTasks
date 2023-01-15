@@ -43,7 +43,7 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
                                 "\n" + "Producer : " + order.getClient().getClientName() +
                                 "\n" + "Film name : " + order.getFilm().getFilmName() +
                                 "\n" + "--------------------------------");
-        chequeSb.append(String.format("\n" +"%-23s %s", "Lease and Tax", dF.format(order.getFilm().getLEASE_AND_TAX()) + "€"));
+        chequeSb.append(String.format("\n" +"%-23s %s", "Lease and Tax", dF.format(order.getFilm().getLeaseAndTax()) + "€"));
         for (int i = 0; i < order.getFilm().getFilmStudioList().size() ; i++) {
             chequeSb.append(String.format("\n" + "%-23s %s", order.getFilm().getFilmStudioList().get(i),
                     dF.format(order.getFilm().getFilmStudioList().get(i).getPriceForRent()) + "€"));
