@@ -24,7 +24,7 @@ public class Film {
         setAmountOfEpisodes(amountOfEpisodes);
     }
 
-    public int getLEASE_AND_TAX() {
+    public int getLeaseAndTax() {
         return LEASE_AND_TAX;
     }
 

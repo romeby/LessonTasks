@@ -6,4 +6,5 @@ public interface FilmOrderOutputService {
 
     String outputOfAttribute(Order order);
     String outputCheque(Order order);
+    void printChequeToFile(String outputCheque, String fileName);
 }
