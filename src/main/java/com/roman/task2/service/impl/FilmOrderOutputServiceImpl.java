@@ -62,10 +62,9 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
         try {
             FileWriter fileWriter = new FileWriter(filename, false);
             fileWriter.write(outputCheque);
-            fileWriter.flush();
+            fileWriter.close();
         } catch (IOException e) {
             logger.log(Level.ERROR, e.getMessage()); ;
         }
-
     }
 }
