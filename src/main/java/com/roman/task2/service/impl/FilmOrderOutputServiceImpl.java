@@ -59,12 +59,11 @@ public class FilmOrderOutputServiceImpl implements FilmOrderOutputService {
 
     @Override
     public void printChequeToFile(String outputCheque, String filename) {
-        try {
-            FileWriter fileWriter = new FileWriter(filename, false);
+        try (FileWriter fileWriter = new FileWriter(filename, false)){
             fileWriter.write(outputCheque);
-            fileWriter.close();
+            fileWriter.flush();
         } catch (IOException e) {
-            logger.log(Level.ERROR, e.getMessage()); ;
+            logger.log(Level.ERROR, e.getMessage());
         }
 
     }
