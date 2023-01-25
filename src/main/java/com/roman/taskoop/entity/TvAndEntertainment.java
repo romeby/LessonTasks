@@ -1,27 +1,63 @@
 package com.roman.taskoop.entity;
 
-public class TvAndEntertainment extends ElectricalAppliances {
-    private int screenSize;
-    private String typeOfOS;
-    private int soundPower;
-    private String storageSize; //1TB, 500GB
+import java.util.StringJoiner;
 
-    public TvAndEntertainment(String type, String brandName, String model, int price, int warrantyYears,
-                              int energyConsumption, int screenSize, String typeOfOS, String storageSize) {
-        super(type, brandName, model, price, warrantyYears, energyConsumption);
+public class TvAndEntertainment extends ElectricalAppliance {
+    private double screenSize;
+    private String typeOfOS;
+
+    public TvAndEntertainment() {
+    }
+
+    public TvAndEntertainment(int applianceId, String type, String brandName, int price, int warrantyYears,
+                              int energyConsumption, double screenSize, String typeOfOS) {
+        super(applianceId, type, brandName, price, warrantyYears, energyConsumption);
         this.screenSize = screenSize;
         this.typeOfOS = typeOfOS;
-        this.storageSize = storageSize;
     }
 
-    public TvAndEntertainment(String type, String brandName, String model, int price, int warrantyYears,
-                              int energyConsumption, int soundPower) {
-        super(type, brandName, model, price, warrantyYears, energyConsumption);
-        this.soundPower = soundPower;
+    public double getScreenSize() {
+        return screenSize;
     }
-    public TvAndEntertainment(String type, String brandName, String model, int price, int warrantyYears,
-                              int energyConsumption, String storageSize) {
-        super(type, brandName, model, price, warrantyYears, energyConsumption);
-        this.storageSize = storageSize;
+
+    public void setScreenSize(int screenSize) {
+        this.screenSize = screenSize;
+    }
+
+    public String getTypeOfOS() {
+        return typeOfOS;
+    }
+
+    public void setTypeOfOS(String typeOfOS) {
+        this.typeOfOS = typeOfOS;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TvAndEntertainment that)) return false;
+        if (!super.equals(o)) return false;
+
+        if (Double.compare(that.screenSize, screenSize) != 0) return false;
+        return typeOfOS.equals(that.typeOfOS);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(screenSize);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + typeOfOS.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TvAndEntertainment.class.getSimpleName() + super.toString()
+                                + "[", "]")
+                .add("screenSize=" + screenSize)
+                .add("typeOfOS='" + typeOfOS + "'")
+                .toString();
     }
 }
