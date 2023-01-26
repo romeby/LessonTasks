@@ -15,13 +15,13 @@ public class ElectricalAppliance {
 
 
 
-    public ElectricalAppliance(int applianceId, String type, String brandName, int price, int warrantyYears,
+    public ElectricalAppliance(int applianceId, String type, String brandName, int price, int warrantyMonths,
                                int energyConsumption) {
         this.applianceId = applianceId;
         this.type = type;
         this.brandName = brandName;
         this.price = price;
-        this.warrantyMonths = warrantyYears;
+        this.warrantyMonths = warrantyMonths;
         this.energyConsumption = energyConsumption;
     }
     public ElectricalAppliance() {
