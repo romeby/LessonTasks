@@ -14,7 +14,8 @@ public class AppliancePropertiesReaderImpl implements AppliancePropertiesReader 
         Properties properties = new Properties();
         FloorCareAppliance appliance = new FloorCareAppliance();
         try {
-            properties.load(new FileReader(filename));
+            FileReader fileReader = new FileReader(filename);
+            properties.load(fileReader);
             System.out.println(properties.entrySet());
             appliance.getApplianceId();
             appliance.setType(properties.getProperty("type").toUpperCase());
@@ -24,8 +25,9 @@ public class AppliancePropertiesReaderImpl implements AppliancePropertiesReader 
             appliance.setWarrantyMonths(Integer.parseInt(properties.getProperty("warranty")));
             appliance.setEnergyConsumption(Integer.parseInt(properties.getProperty("energyConsumption")));
             appliance.setCordless(Boolean.parseBoolean(properties.getProperty("cordless")));
-        } catch (IOException e){
-            System.out.println("ОШИБКА: файл отсутствует");
+            fileReader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return appliance;
     }

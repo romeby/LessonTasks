@@ -5,6 +5,8 @@ import java.util.StringJoiner;
 public class FloorCareAppliance extends ElectricalAppliance {
 private boolean isCordless;
 
+
+
     public FloorCareAppliance() {
     }
 

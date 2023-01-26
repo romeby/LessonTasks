@@ -4,7 +4,7 @@ import com.roman.taskoop.idgenerator.IdGenerator;
 
 import java.util.StringJoiner;
 
-public abstract class ElectricalAppliance {
+public class ElectricalAppliance {
     private int applianceId = IdGenerator.generateNextId();
     private String type;
     private String brandName;
@@ -15,7 +15,8 @@ public abstract class ElectricalAppliance {
 
 
 
-    public ElectricalAppliance(int applianceId, String type, String brandName, int price, int warrantyYears, int energyConsumption) {
+    public ElectricalAppliance(int applianceId, String type, String brandName, int price, int warrantyYears,
+                               int energyConsumption) {
         this.applianceId = applianceId;
         this.type = type;
         this.brandName = brandName;
