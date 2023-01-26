@@ -1,0 +1,1 @@
+vacuum_cleaner samsung 300 4 2000 true
