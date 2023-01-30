@@ -22,7 +22,8 @@ import java.nio.file.Paths;
 
 public class ReadFromFileImpl implements ReadFromFile {
     static Logger logger = LogManager.getLogger();
-    private static final String FILE_NAME = "data\\InputFile.txt";
+    private static final String FLOOR_INPUT_FILE = "data\\InputFile.txt";
+    private static final String KITCHEN_INPUT_FILE = "data\\InputFileKitchen.txt";
     private static final String SEPARATOR = "\\s+";
 
     @Override
@@ -32,11 +33,11 @@ public class ReadFromFileImpl implements ReadFromFile {
         int[] ints;
         String[] typeStrings;
         boolean[] booleans;
-        double[] doubles;
+//        double[] doubles;
         Path path = Paths.get(filename);
         if (!Files.exists(path)) {
             logger.log(Level.WARN, "File does not exist.");
-            //filename = FILE_NAME;
+            filename = FLOOR_INPUT_FILE;
         }
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))){
             String stringTmp = bufferedReader.readLine();
@@ -45,7 +46,7 @@ public class ReadFromFileImpl implements ReadFromFile {
                 ints = new int[splitedString.length];
                 typeStrings = new String[splitedString.length];
                 booleans = new boolean[splitedString.length];
-                doubles = new double[splitedString.length];
+//                doubles = new double[splitedString.length];
                 for (int i = 0; i < splitedString.length; i++) {
                     if (stringValidator.validateInt(splitedString[i])) {
                         ints[i] = Integer.parseInt(splitedString[i]);
@@ -64,12 +65,12 @@ public class ReadFromFileImpl implements ReadFromFile {
                         logger.log(Level.INFO, booleans[i]);
                     }
                 }
-                for (int i = 0; i < splitedString.length; i++){
-                    if (stringValidator.validateDouble(splitedString[i])){
-                        doubles[i] = Double.parseDouble(splitedString[i]);
-                        logger.log(Level.INFO, doubles[i]);
-                    }
-                }
+//                for (int i = 0; i < splitedString.length; i++){
+//                    if (stringValidator.validateDouble(splitedString[i])){
+//                        doubles[i] = Double.parseDouble(splitedString[i]);
+//                        logger.log(Level.INFO, doubles[i]);
+//                    }
+//                }
                 floorCareAppliance = new FloorCareAppliance(floorCareAppliance.getApplianceId(), typeStrings[0],
                         typeStrings[1], ints[2], ints[3], ints[4], booleans[5]);
             } else {
@@ -83,17 +84,71 @@ public class ReadFromFileImpl implements ReadFromFile {
     }
 
     @Override
-    public KitchenAppliance kitchenReader(String filename) {
-        return null;
+    public KitchenAppliance kitchenReader(String filename) throws CustomException {
+        KitchenAppliance kitchenAppliance = new KitchenAppliance();
+        StringValidator stringValidator = new StringValidatorImpl();
+        int[] ints;
+        String[] typeStrings;
+        boolean[] booleans;
+//        double[] doubles;
+        Path path = Paths.get(filename);
+        if (!Files.exists(path)) {
+            logger.log(Level.WARN, "File does not exist.");
+            filename = KITCHEN_INPUT_FILE;
+        }
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))){
+            String stringTmp = bufferedReader.readLine();
+            if (stringTmp != null) {
+                String[] splitedString = stringTmp.split(SEPARATOR);
+                ints = new int[splitedString.length];
+                typeStrings = new String[splitedString.length];
+                booleans = new boolean[splitedString.length];
+//                doubles = new double[splitedString.length];
+                for (int i = 0; i < splitedString.length; i++) {
+                    if (stringValidator.validateInt(splitedString[i])) {
+                        ints[i] = Integer.parseInt(splitedString[i]);
+                        logger.log(Level.INFO, ints[i]);
+                    }
+                }
+                for (int i = 0; i < splitedString.length; i++) {
+                    if (stringValidator.validateString(splitedString[i])) {
+                        typeStrings[i] = splitedString[i];
+                        logger.log(Level.INFO, typeStrings[i]);
+                    }
+                }
+                for (int i = 0; i < splitedString.length; i++) {
+                    if (stringValidator.validateBoolean(splitedString[i])) {
+                        booleans[i] = Boolean.parseBoolean(splitedString[i]);
+                        logger.log(Level.INFO, booleans[i]);
+                    }
+                }
+//                for (int i = 0; i < splitedString.length; i++){
+//                    if (stringValidator.validateDouble(splitedString[i])){
+//                        doubles[i] = Double.parseDouble(splitedString[i]);
+//                        logger.log(Level.INFO, doubles[i]);
+//                    }
+//                }
+                kitchenAppliance = new KitchenAppliance(kitchenAppliance.getApplianceId(), typeStrings[0],
+                        typeStrings[1], ints[2], ints[3], ints[4], booleans[5]);
+            } else {
+                logger.log(Level.WARN, "No data. File is empty");
+            }
+        } catch (IOException ex){
+            ex.printStackTrace(System.out);
+            throw new CustomException("File is empty or File not Found");
+        }
+        return kitchenAppliance;
     }
 
     @Override
     public LaundryAppliance laundryReader(String filename) {
-        return null;
+        LaundryAppliance laundryAppliance = new LaundryAppliance();
+        return laundryAppliance;
     }
 
     @Override
     public TvAndEntertainment entertainmentReader(String filename) {
-        return null;
+        TvAndEntertainment tvAndEntertainment = new TvAndEntertainment();
+        return tvAndEntertainment;
     }
 }

@@ -8,7 +8,7 @@ import com.roman.taskoop.exception.CustomException;
 
 public interface ReadFromFile {
     FloorCareAppliance floorReader(String filename) throws CustomException;
-    KitchenAppliance kitchenReader(String filename);
+    KitchenAppliance kitchenReader(String filename) throws CustomException;
     LaundryAppliance laundryReader(String filename);
     TvAndEntertainment entertainmentReader(String filename);
 }
