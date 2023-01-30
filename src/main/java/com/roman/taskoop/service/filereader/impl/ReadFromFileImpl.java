@@ -33,7 +33,6 @@ public class ReadFromFileImpl implements ReadFromFile {
         int[] ints;
         String[] typeStrings;
         boolean[] booleans;
-//        double[] doubles;
         Path path = Paths.get(filename);
         if (!Files.exists(path)) {
             logger.log(Level.WARN, "File does not exist.");
@@ -46,7 +45,6 @@ public class ReadFromFileImpl implements ReadFromFile {
                 ints = new int[splitedString.length];
                 typeStrings = new String[splitedString.length];
                 booleans = new boolean[splitedString.length];
-//                doubles = new double[splitedString.length];
                 for (int i = 0; i < splitedString.length; i++) {
                     if (stringValidator.validateInt(splitedString[i])) {
                         ints[i] = Integer.parseInt(splitedString[i]);
@@ -65,12 +63,6 @@ public class ReadFromFileImpl implements ReadFromFile {
                         logger.log(Level.INFO, booleans[i]);
                     }
                 }
-//                for (int i = 0; i < splitedString.length; i++){
-//                    if (stringValidator.validateDouble(splitedString[i])){
-//                        doubles[i] = Double.parseDouble(splitedString[i]);
-//                        logger.log(Level.INFO, doubles[i]);
-//                    }
-//                }
                 floorCareAppliance = new FloorCareAppliance(floorCareAppliance.getApplianceId(), typeStrings[0],
                         typeStrings[1], ints[2], ints[3], ints[4], booleans[5]);
             } else {
@@ -90,7 +82,6 @@ public class ReadFromFileImpl implements ReadFromFile {
         int[] ints;
         String[] typeStrings;
         boolean[] booleans;
-//        double[] doubles;
         Path path = Paths.get(filename);
         if (!Files.exists(path)) {
             logger.log(Level.WARN, "File does not exist.");
@@ -103,7 +94,7 @@ public class ReadFromFileImpl implements ReadFromFile {
                 ints = new int[splitedString.length];
                 typeStrings = new String[splitedString.length];
                 booleans = new boolean[splitedString.length];
-//                doubles = new double[splitedString.length];
+
                 for (int i = 0; i < splitedString.length; i++) {
                     if (stringValidator.validateInt(splitedString[i])) {
                         ints[i] = Integer.parseInt(splitedString[i]);
