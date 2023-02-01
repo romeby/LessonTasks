@@ -16,23 +16,37 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ElectricalApplianceMain {
-     static Logger logger = LogManager.getLogger();
+import static org.testng.Assert.assertEquals;
 
-    public static void main(String[] args) throws CustomException {
+public class ElectricalApplianceMainTest {
+static Logger logger = LogManager.getLogger();
+    @org.testng.annotations.Test
+    public void testMain() {
         List<ElectricalAppliance> applianceList = new ArrayList<>();
         int sumOfEnergyConsumption;
-//        AppliancePropertiesReader reader = new AppliancePropertiesReaderImpl();
-//        reader.readPropertiesFloorCare("data\\floorcare.properties");
         ReadFromFile readFromFile = new ReadFromFileImpl();
-        FloorCareAppliance floorAppliance = readFromFile.floorReader("data\\InputFile.txt");
-        KitchenAppliance kitchenAppliance = readFromFile.kitchenReader("data\\InputFileKitchen.txt");
+        FloorCareAppliance floorAppliance = null;
+        try {
+            floorAppliance = readFromFile.floorReader("data\\InputFile.txt");
+        } catch (CustomException e) {
+            throw new RuntimeException("File not found",e);
+        }
+        KitchenAppliance kitchenAppliance = null;
+        try {
+            kitchenAppliance = readFromFile.kitchenReader("data\\InputFileKitchen.txt");
+        } catch (CustomException e) {
+            throw new RuntimeException("File not found",e);
+        }
         applianceList.add(floorAppliance);
         applianceList.add(kitchenAppliance);
         PluggedInAppliance pluggedInAppliance = new PluggedInAppliance(applianceList);
         CalculateEnergyConsumption calculateEnergyConsumption = new calculateEnergyConsumptionImpl();
-        sumOfEnergyConsumption = calculateEnergyConsumption.calculate(pluggedInAppliance);
+        try {
+            sumOfEnergyConsumption = calculateEnergyConsumption.calculate(pluggedInAppliance);
+        } catch (CustomException e) {
+            throw new RuntimeException(e);
+        }
         logger.log(Level.INFO, "Energy consumption is {} Watt", sumOfEnergyConsumption);
-
+        assertEquals(sumOfEnergyConsumption, 4000);
     }
 }

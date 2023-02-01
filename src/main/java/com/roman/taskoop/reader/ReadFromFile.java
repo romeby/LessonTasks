@@ -1,4 +1,4 @@
-package com.roman.taskoop.service.filereader;
+package com.roman.taskoop.reader;
 
 import com.roman.taskoop.entity.FloorCareAppliance;
 import com.roman.taskoop.entity.KitchenAppliance;

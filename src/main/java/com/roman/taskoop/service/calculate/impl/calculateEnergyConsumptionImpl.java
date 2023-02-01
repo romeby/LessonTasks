@@ -11,7 +11,7 @@ public class calculateEnergyConsumptionImpl implements CalculateEnergyConsumptio
     static Logger logger = LogManager.getLogger();
 
     @Override
-    public int calculateEnergyConsumption(PluggedInAppliance pluggedInAppliance) throws CustomException {
+    public int calculate(PluggedInAppliance pluggedInAppliance) throws CustomException {
         int sumOfEnergyConsumption = 0;
         if (pluggedInAppliance == null) {
             throw new CustomException("No electrical appliances");

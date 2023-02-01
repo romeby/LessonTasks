@@ -1,11 +1,11 @@
-package com.roman.taskoop.service.filereader.impl;
+package com.roman.taskoop.reader.impl;
 
 import com.roman.taskoop.entity.FloorCareAppliance;
 import com.roman.taskoop.entity.KitchenAppliance;
 import com.roman.taskoop.entity.LaundryAppliance;
 import com.roman.taskoop.entity.TvAndEntertainment;
 import com.roman.taskoop.exception.CustomException;
-import com.roman.taskoop.service.filereader.ReadFromFile;
+import com.roman.taskoop.reader.ReadFromFile;
 import com.roman.taskoop.validator.StringValidator;
 import com.roman.taskoop.validator.impl.StringValidatorImpl;
 import org.apache.logging.log4j.Level;

@@ -10,9 +10,9 @@ private boolean isCordless;
     public FloorCareAppliance() {
     }
 
-    public FloorCareAppliance(int applianceId, String type, String brandName, int price, int warrantyYears, int energyConsumption,
+    public FloorCareAppliance(int applianceId, String type, String brandName, int price, int warrantyMonths, int energyConsumption,
                               boolean isCordless) {
-        super(applianceId, type, brandName, price, warrantyYears, energyConsumption);
+        super(applianceId, type, brandName, price, warrantyMonths, energyConsumption);
         this.isCordless = isCordless;
     }
     public boolean isCordless() {

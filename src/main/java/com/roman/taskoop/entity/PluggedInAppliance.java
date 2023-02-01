@@ -4,11 +4,11 @@ import com.roman.taskoop.idgenerator.IdGenerator;
 
 import java.util.List;
 
-public class PluggedInAppliance {
+public class PluggedInAppliance extends ElectricalAppliance {
     private int applianceId;
     private List<ElectricalAppliance> electricalApplianceList;
 
-    public PluggedInAppliance(int applianceId, List<ElectricalAppliance> electricalApplianceList) {
+    public PluggedInAppliance(List<ElectricalAppliance> electricalApplianceList) {
         this.applianceId = IdGenerator.generateNextId();
         this.electricalApplianceList = electricalApplianceList;
     }

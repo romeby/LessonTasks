@@ -1,7 +1,7 @@
-package com.roman.taskoop.service.propertiesreader.impl;
+package com.roman.taskoop.reader.impl;
 
 import com.roman.taskoop.entity.FloorCareAppliance;
-import com.roman.taskoop.service.propertiesreader.AppliancePropertiesReader;
+import com.roman.taskoop.reader.AppliancePropertiesReader;
 
 import java.io.FileReader;
 import java.io.IOException;

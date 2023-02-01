@@ -1,4 +1,4 @@
-package com.roman.taskoop.service.propertiesreader;
+package com.roman.taskoop.reader;
 
 import com.roman.taskoop.entity.FloorCareAppliance;
 

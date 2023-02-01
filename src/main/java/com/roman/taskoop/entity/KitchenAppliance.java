@@ -8,9 +8,9 @@ public class KitchenAppliance extends ElectricalAppliance {
     public KitchenAppliance() {
     }
 
-    public KitchenAppliance(int applianceId, String type, String brandName, int price, int warrantyYears,
+    public KitchenAppliance(int applianceId, String type, String brandName, int price, int warrantyMonths,
                             int energyConsumption, boolean isIntegrated) {
-        super(applianceId, type, brandName, price, warrantyYears, energyConsumption);
+        super(applianceId, type, brandName, price, warrantyMonths, energyConsumption);
         this.isIntegrated = isIntegrated;
     }
 

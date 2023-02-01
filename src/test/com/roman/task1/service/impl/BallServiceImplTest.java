@@ -3,6 +3,7 @@ package com.roman.task1.service.impl;
 import com.roman.task1.entity.Ball;
 import com.roman.task1.entity.Basket;
 import com.roman.task1.service.BallService;
+import com.roman.task1.service.impl.BallServiceImpl;
 import org.testng.annotations.Test;
 
 import java.util.List;
