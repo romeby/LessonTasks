@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class calculateEnergyConsumptionImpl implements CalculateEnergyConsumption {
+public class CalculateEnergyConsumptionImpl implements CalculateEnergyConsumption {
     static Logger logger = LogManager.getLogger();
 
     @Override
