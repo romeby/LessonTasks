@@ -15,6 +15,6 @@ public class SearchServiceImpl implements SearchService {
                 appliances.add(applianceList.get(i));
             }
         }
-        return applianceList;
+        return appliances;
     }
 }
