@@ -9,6 +9,8 @@ import com.roman.taskoop.reader.ReadFromFile;
 import com.roman.taskoop.reader.impl.ReadFromFileImpl;
 import com.roman.taskoop.service.calculate.CalculateEnergyConsumption;
 import com.roman.taskoop.service.calculate.impl.calculateEnergyConsumptionImpl;
+import com.roman.taskoop.service.sort.Sort;
+import com.roman.taskoop.service.sort.impl.SortImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +35,10 @@ public class ElectricalApplianceMain {
         CalculateEnergyConsumption calculateEnergyConsumption = new calculateEnergyConsumptionImpl();
         sumOfEnergyConsumption = calculateEnergyConsumption.calculate(pluggedInAppliance);
         logger.log(Level.INFO, "Energy consumption is {} Watt", sumOfEnergyConsumption);
+        Sort sort = new SortImpl();
+        System.out.println(sort.sortByEnergyConsumption(applianceList));
+        System.out.println(sort.sortByPrice(applianceList));
+        System.out.println(sort.sortByWeight(applianceList));
 
     }
 }

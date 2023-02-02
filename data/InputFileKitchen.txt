@@ -1,1 +1,1 @@
-fridge samsung 400 36 2000 false
+fridge samsung 500 36 800 false
