@@ -36,9 +36,8 @@ public class ElectricalApplianceMain {
         sumOfEnergyConsumption = calculateEnergyConsumption.calculate(pluggedInAppliance);
         logger.log(Level.INFO, "Energy consumption is {} Watt", sumOfEnergyConsumption);
         Sort sort = new SortImpl();
-        System.out.println(sort.sortByEnergyConsumption(applianceList));
-        System.out.println(sort.sortByPrice(applianceList));
-        System.out.println(sort.sortByWeight(applianceList));
-
+        logger.log(Level.INFO,"Sort by Energy consumption {}", sort.sortByEnergyConsumption(applianceList));
+        logger.log(Level.INFO,"Sort by price {}", sort.sortByPrice(applianceList));
+        logger.log(Level.INFO,"Sort by warranty {}",sort.sortByWeight(applianceList));
     }
 }

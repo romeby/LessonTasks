@@ -4,7 +4,7 @@ import com.roman.taskoop.entity.ElectricalAppliance;
 import com.roman.taskoop.service.sort.Sort;
 import com.roman.taskoop.service.sort.comparator.EnergyConsumptionComparator;
 import com.roman.taskoop.service.sort.comparator.PriceComparator;
-import com.roman.taskoop.service.sort.comparator.WeightComparator;
+import com.roman.taskoop.service.sort.comparator.WarrantyComparator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,11 +43,11 @@ public class SortImpl implements Sort {
     public List<ElectricalAppliance> sortByWeight(List<ElectricalAppliance> electricalAppliance) {
         List<ElectricalAppliance> applianceList = new ArrayList<>();
         for (int i = 0; i < electricalAppliance.size(); i++) {
-            if (electricalAppliance.get(i).getWeight() >= 0 && !electricalAppliance.isEmpty() && electricalAppliance != null){
+            if (electricalAppliance.get(i).getWarrantyMonths() >= 0 && !electricalAppliance.isEmpty() && electricalAppliance != null){
                 applianceList.add(electricalAppliance.get(i));
             }
         }
-        Collections.sort(applianceList, new WeightComparator());
+        Collections.sort(applianceList, new WarrantyComparator());
         return applianceList;
     }
 }
